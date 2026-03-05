@@ -6,11 +6,11 @@
 /*   By: maratojo <maratojo@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 15:38:55 by maratojo          #+#    #+#             */
-/*   Updated: 2026/03/03 16:25:33 by maratojo         ###   ########.fr       */
+/*   Updated: 2026/03/05 08:37:45 by maratojo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "get_next_line.h"
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -68,3 +68,48 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*str;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	if (ft_strlen(s) < (size_t)start)
+		len = 0;
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	str = malloc(sizeof(char) * len + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (s[i] && i < len)
+	{
+		str[i] = s[start + i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+char	*ft_strdup(const char *src)
+{
+	int		i;
+	int		len;
+	char	*dest;
+
+	len = 0;
+	while (src[len] != '\0')
+		len++;
+	dest = malloc((len + 1) * sizeof(char));
+	if (dest == NULL)
+		return (NULL);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest [i] = '\0';
+	return (dest);
+}
